@@ -1,12 +1,12 @@
-# EE-XX-Firmware
+# EE-Sensors-Firmware
 
-This repo holds the firmware for [brief description of team].
+This repo holds the firmware for the Sensors team! 
 
 ## Contributing Members
 
 | First Name | Username | Project |
 |---|---|---|
-| Name | @user | task |
+| Chuddy | @chudder | chudding |
 |  |  |  |
 |  |  |  |
 
@@ -53,19 +53,19 @@ GitHub no longer accepts passwords for git operations. Easiest fix: install [Git
 ### 5. Clone the repo
 ```bash
 git clone <repo-url>
-cd EE-XX-Firmware
+cd EE-Sensors-Firmware
 ```
 Copy `<repo-url>` from the green **Code** button on the GitHub repo page.
  
 ### 6. Create your branch and start working
 ```bash
-git checkout -b yourname/your-feature-name
+git checkout -b yourname/your-feature
 ```
 Make your changes, then:
 ```bash
 git add .
 git commit -m "short description of what you did"
-git push -u origin yourname/your-feature-name
+git push -u origin yourname/your-feature
 ```
 Open a pull request on GitHub for review and merge. One of the leads will review it and approve your work; then you can merge it.
 
