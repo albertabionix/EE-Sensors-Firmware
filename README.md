@@ -7,7 +7,7 @@ This repo holds the firmware for the Sensors team!
 | First Name | Username | Project |
 |---|---|---|
 | Chuddy | @chudder | chudding |
-|  |  |  |
+| natalie | natalieradwan | motor encoder |
 |  |  |  |
 
 (Fill in your information in the above table if you contribute to this repo)
