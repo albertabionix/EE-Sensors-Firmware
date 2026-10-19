@@ -1,0 +1,68 @@
+const int sensorPin = A0;
+
+const int COUNTS_PER_REV = 16384;
+const int MAX_COUNT = 16383;
+
+// becomes -1 if the angle moves in the opposite direction
+const int DIRECTION = 1;
+
+int standingPosition = 0;
+bool calibrated = false;
+
+void setup() {
+  Serial.begin(9600);
+
+  Serial.println("Place knee in standing position.");
+  Serial.println("Type c in Serial Monitor to calibrate.");
+}
+
+void loop() {
+
+  // Check whether you entered the calibration command
+  if (Serial.available() > 0) {
+    char command = Serial.read();
+
+    if (command == 'c' || command == 'C') {
+
+      int sensorValue = analogRead(sensorPin);
+
+      standingPosition = map(sensorValue, 0, 1023, 0, MAX_COUNT);
+
+      calibrated = true;
+
+      Serial.print("Standing reference count: ");
+      Serial.println(standingPosition);
+    }
+  }
+
+  // dont calculate knee angle before calibration
+  if (!calibrated) {
+    return;
+  }
+
+  // Read analog input
+  int sensorValue = analogRead(sensorPin);
+
+  // converts arduino into orbis resolution
+  int position = map(
+    sensorValue, 0, 1023, 0, MAX_COUNT
+  );
+
+  // find difference between current and standing position
+  int delta = position - standingPosition;
+
+
+  // Convert relative counts into a relative angle
+  float angle = DIRECTION * delta
+              * (360.0 / COUNTS_PER_REV);
+
+  // Display the readings
+  Serial.print("sensor value: ");
+  Serial.print(sensorValue);
+
+  Serial.print(" | knee angle: ");
+  Serial.print(angle, 2);
+  Serial.println(" degrees");
+
+  delay(100);
+}
